@@ -1,5 +1,11 @@
+function Pokemon(name, height, types) {
+  this.name = name;
+  this.height = height;
+  this.types = types;
+}
+
 let pokemonList = [
-  { height: 1.7, name: "Charizard", types: ["fire", "flying"] },
-  { height: 0.3, name: "Togepi", types: "fairy" },
-  { height: 1, name: "Poliwhirl", types: "water" },
+  new Pokemon("Charizard", 1.7, ["fire", "flying"]),
+  new Pokemon("Togepi", 0.3, ["fairy"]),
+  new Pokemon("Poliwhirl", 1, ["water"]),
 ];
