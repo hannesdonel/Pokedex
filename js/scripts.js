@@ -1,3 +1,5 @@
-alert('Hello world');
-const favoriteFood = 'no it\'s not Pizza, altough Pizza is great';
-document.write(favoriteFood);
+let pokemonList = [
+  { height: 1.7, name: "Charizard", types: ["fire", "flying"] },
+  { height: 0.3, name: "Togepi", types: "fairy" },
+  { height: 1, name: "Poliwhirl", types: "water" },
+];
