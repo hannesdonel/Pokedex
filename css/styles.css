@@ -76,6 +76,7 @@ header {
   width: 100%;
   background-color: var(--overlay-red);
   padding: 10px;
+  text-align: center;
 }
 
 .logo {
@@ -83,10 +84,44 @@ header {
   width: auto;
 }
 
+/* Main */
+
 main {
   margin: var(--header-height-med) 0 0 0;
   padding: 25px 10px;
   background-color: var(--overlay-white);
   width: 100%;
   height: 100%;
+}
+
+/* Responisve Design whole Site */
+
+@media all and (max-height: 500px), (max-width: 530px) {
+  header {
+    padding: 5px;
+    height: var(--header-height-small);
+  }
+
+  main {
+    margin: var(--header-height-small) 0 0 0;
+  }
+
+  body {
+    height: calc(100vh - var(--header-height-small));
+  }
+}
+
+@media all and (min-width: 1800px) {
+  header {
+    padding: 5px;
+    height: var(--header-height-big);
+  }
+
+  main {
+    margin: var(--header-height-big) 0 0 0;
+  }
+
+  body {
+    height: calc(100vh - var(--header-height-big));
+  }
 }
