@@ -30,6 +30,10 @@ code {
   font-family: "VT323", system-ui-monospace;
 }
 
+p {
+  margin: 0 0 20px 0;
+}
+
 body {
   background-image: url(../img/background_big.png);
   background-size: cover;
@@ -88,7 +92,7 @@ header {
 
 main {
   margin: var(--header-height-med) 0 0 0;
-  padding: 25px 10px;
+  padding: 20px 10px;
   background-color: var(--overlay-white);
   width: 100%;
   height: 100%;

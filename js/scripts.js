@@ -14,11 +14,20 @@ let pokemonList = [
 
 //List the Pokémons in DOM
 
-for (let i = 0; i < pokemonList.length; i++) {
-  document.write(
-      "<br>" + pokemonList[i].name + " (height: " + pokemonList[i].height + " m)"
-  );
-  if (pokemonList[i].height > 1) {
-    document.write(" - Wow, that's big!");
+let domElementsString = "";
+for (let Pokemon of pokemonList) {
+  if (Pokemon.height > 1) {
+    domElementsString += `
+      <p class="pokemon__special">
+        ${Pokemon.name} (height: ${Pokemon.height}m) - Wow, that\'s
+        big!
+      </p>`;
+  } else {
+    domElementsString += `
+      <p class="pokemon">
+        ${Pokemon.name} (height: ${Pokemon.height}m)
+      </p>`;
   }
 }
+
+document.write(domElementsString);
