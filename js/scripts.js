@@ -1,21 +1,41 @@
 //This is the definition of the Pokémon List
 
-function Pokemon(name, height, types) {
-  this.name = name;
-  this.height = height;
-  this.types = types;
-}
+let pokemonRepository = (function () {
+  function Pokemon(name, height, types) {
+    this.name = name;
+    this.height = height;
+    this.types = types;
+  }
 
-let pokemonList = [
-  new Pokemon("Charizard", 1.7, ["fire", "flying"]),
-  new Pokemon("Togepi", 0.3, ["fairy"]),
-  new Pokemon("Poliwhirl", 1, ["water"]),
-];
+  let pokemonList = [
+    new Pokemon("Charizard", 1.7, ["fire", "flying"]),
+    new Pokemon("Togepi", 0.3, ["fairy"]),
+    new Pokemon("Poliwhirl", 1, ["water"]),
+  ];
+
+  function add(pokemon) {
+    if (typeof pokemon !== "object") {
+      alert("The new Pokémon should have the form of an object");
+    } else if (Object.keys(pokemon) !== [ "name", "height", "types" ]) {
+      alert("The object should have the following properties: name, height, types")
+    }
+    pokemonList.push(pokemon);
+  }
+
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+  };
+})();
 
 //List the Pokémons in DOM
 
 let domElementsString = "";
-pokemonList.forEach(function (Pokemon) {
+pokemonRepository.getAll().forEach(function (Pokemon) {
   if (Pokemon.height > 1) {
     domElementsString += `
       <p class="pokemon__special">
