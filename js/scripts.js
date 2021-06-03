@@ -15,7 +15,7 @@ let pokemonList = [
 //List the Pokémons in DOM
 
 let domElementsString = "";
-for (let Pokemon of pokemonList) {
+pokemonList.forEach(function (Pokemon) {
   if (Pokemon.height > 1) {
     domElementsString += `
       <p class="pokemon__special">
@@ -28,6 +28,6 @@ for (let Pokemon of pokemonList) {
         ${Pokemon.name} (height: ${Pokemon.height}m)
       </p>`;
   }
-}
+});
 
 document.write(domElementsString);
