@@ -6,10 +6,10 @@
   --font-color: rgb(0, 0, 0);
   --font-color-inverse: rgb(255, 255, 255);
   --font-color-soft: rgba(0, 0, 0, 0.05);
-  --overlay-white: rgba(255, 255, 255, 0.8);
-  --overlay-white-noOpacity: rgba(255, 255, 255, 1);
-  --button-color: rgba(255, 0, 0, 0.85);
-  --button-color-hover: rgba(255, 0, 0, 1);
+  --overlay-white: rgba(255, 222, 0, 0.8);
+  --overlay-white-noOpacity: rgb(255, 222, 0);
+  --button-color: rgba(204, 0, 0, 0.85);
+  --button-color-hover: rgb(204, 0, 0);
   --header-height-small: 50px;
   --header-height-med: 70px;
   --header-height-big: 100px;
@@ -164,7 +164,7 @@ main {
   width: 100%;
   padding: 2vh 0;
   color: inherit;
-  border: 2px solid red;
+  border: 4px solid #3B4CCA;
   border-radius: 3px;
   transition: width 0.25s, border-radius 0.25s, background-color 0.8s,
     color 0.8s;
@@ -175,4 +175,5 @@ main {
   width: 80%;
   color: var(--font-color-inverse);
   border-radius: 10px;
+  cursor: pointer;
 }
