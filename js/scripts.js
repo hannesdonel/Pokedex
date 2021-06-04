@@ -16,8 +16,10 @@ let pokemonRepository = (function () {
   function add(pokemon) {
     if (typeof pokemon !== "object") {
       alert("The new Pokémon should have the form of an object");
-    } else if (Object.keys(pokemon) !== [ "name", "height", "types" ]) {
-      alert("The object should have the following properties: name, height, types")
+    } else if (Object.keys(pokemon) !== ["name", "height", "types"]) {
+      alert(
+        "The object should have the following properties: name, height, types"
+      );
     }
     pokemonList.push(pokemon);
   }
@@ -26,9 +28,21 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  function addListItem(Pokemon) {
+    let list = document.querySelector(".pokemon-list");
+    let listItem = document.createElement("li");
+    listItem.classList.add("pokemon-list__item");
+    let button = document.createElement("button");
+    button.innerText = Pokemon.name;
+    button.classList.add("pokemon-list__item--button");
+    listItem.appendChild(button);
+    list.appendChild(listItem);
+  }
+
   return {
     add: add,
     getAll: getAll,
+    addListItem: addListItem,
   };
 })();
 
@@ -36,6 +50,8 @@ let pokemonRepository = (function () {
 
 let domElementsString = "";
 pokemonRepository.getAll().forEach(function (Pokemon) {
+  pokemonRepository.addListItem(Pokemon);
+
   if (Pokemon.height > 1) {
     domElementsString += `
       <p class="pokemon__special">
@@ -49,5 +65,3 @@ pokemonRepository.getAll().forEach(function (Pokemon) {
       </p>`;
   }
 });
-
-document.write(domElementsString);
