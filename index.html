@@ -15,26 +15,23 @@
       href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="css/styles.css" type="text/css" />
   </head>
 
   <body>
-    <header>
-      <a
-        href="index.html"
-        target="_self"
-        rel="noopener noreferer"
-        ><img
-          class="logo"
-          src="./img/logo.svg"
-          alt="Logo of Pokémon"
-          width="60"
-          height="60"
-      /></a>
-    </header>
+    <div id="background-overlay">
+        <header>
+          <h1 class="zoom-in animate__animated animate__zoomIn" id="headline-normal">POKÉDEX</h1>
+          <h1 class="zoom-in animate__animated animate__zoomIn" id="headline-stretched">P O K É D E X</h1>
+        </header>
 
     <main>
       <script class="pokemonList" src="js/scripts.js"></script>
     </main>
+      </div>
   </body>
 </html>

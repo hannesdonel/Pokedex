@@ -3,8 +3,13 @@
 :root {
   --standard-font: "VT323", monospace;
   --normal: 400;
-  --overlay-white: rgba(255, 255, 255, 0.6);
-  --overlay-red: rgba(255, 0, 0, 0.6);
+  --font-color: rgb(0, 0, 0);
+  --font-color-inverse: rgb(255, 255, 255);
+  --font-color-soft: rgba(0, 0, 0, 0.05);
+  --overlay-white: rgba(255, 255, 255, 0.8);
+  --overlay-white-noOpacity: rgba(255, 255, 255, 1);
+  --button-color: rgba(255, 0, 0, 0.85);
+  --button-color-hover: rgba(255, 0, 0, 1);
   --header-height-small: 50px;
   --header-height-med: 70px;
   --header-height-big: 100px;
@@ -35,97 +40,139 @@ p {
 }
 
 body {
-  background-image: url(../img/background_big.png);
-  background-size: cover;
-  background-position-x: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  height: calc(100vh - var(--header-height-med));
+  background: center / contain no-repeat fixed url(../img/logo.svg);
+  height: 100vh;
   font-family: var(--standard-font);
   font-weight: var(--normal);
-  font-size: 18px;
+  font-size: 24px;
+  color: var(--font-color);
 }
 
-/* Responsive Background Image */
+@keyframes backgroundFade {
+  0% {
+    background-color: var(--overlay-white-noOpacity);
+  }
 
-@media all and (max-height: 840px) {
-  body {
-    background-image: url(../img/background_small.png);
+  25% {
+    background-color: var(--overlay-white-noOpacity);
+  }
+  100% {
+    background-color: var(--overlay-white);
   }
 }
-
-@media all and (min-height: 840px) and (max-height: 1079px) {
-  body {
-    background-image: url(../img/background_med.png);
-  }
+#background-overlay {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--overlay-white);
+  animation: 4s backgroundFade;
 }
 
-@media all and (min-resolution: 192dpi) and (max-height: 840px) {
-  body {
-    background-image: url(../img/background_big.png);
-  }
-}
-
-@media all and (min-resolution: 192dpi) and (max-height: 1080px) {
-  body {
-    background-image: url(../img/background_big.png);
-  }
+.zoom-in {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 /* Header */
+
+@keyframes headlineOpacity {
+  from {
+    color: var(--font-color);
+  }
+
+  to {
+    color: var(--font-color-soft);
+  }
+}
+
 header {
   position: fixed;
-  top: 0;
-  height: var(--header-height-med);
+  height: auto;
   width: 100%;
-  background-color: var(--overlay-red);
-  padding: 10px;
+  padding: 0;
+  margin: 0;
   text-align: center;
 }
 
-.logo {
-  height: 100%;
-  width: auto;
+header > #headline-normal {
+  margin: 30px 0;
+  padding: 0;
+  font-size: 100px;
+  color: var(--font-color);
+}
+
+header > #headline-stretched {
+  display: none;
+}
+
+@media all and (max-height: 480px) {
+  header {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  header > #headline-stretched {
+    display: block;
+    height: auto;
+    margin: 0 0;
+    padding: 0;
+    font-size: 18vw;
+    color: var(--font-color-soft);
+    animation: 6s headlineOpacity;
+  }
+
+  header > #headline-normal {
+    display: none;
+  }
 }
 
 /* Main */
 
 main {
-  margin: var(--header-height-med) 0 0 0;
-  padding: 20px 10px;
-  background-color: var(--overlay-white);
+  margin: 0;
+  padding: 0 10px;
   width: 100%;
   height: 100%;
 }
 
-/* Responisve Design whole Site */
-
-@media all and (max-height: 500px), (max-width: 530px) {
-  header {
-    padding: 5px;
-    height: var(--header-height-small);
-  }
-
-  main {
-    margin: var(--header-height-small) 0 0 0;
-  }
-
-  body {
-    height: calc(100vh - var(--header-height-small));
-  }
+.pokemon-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
 
-@media all and (min-width: 1800px) {
-  header {
-    padding: 5px;
-    height: var(--header-height-big);
-  }
+.pokemon-list__item {
+  margin: 10px 0;
+  width: 80vw;
+  max-width: 300px;
+}
 
-  main {
-    margin: var(--header-height-big) 0 0 0;
-  }
+.pokemon-list__item--button {
+  background-color: var(--button-color);
+  height: auto;
+  width: 100%;
+  padding: 2vh 0;
+  color: inherit;
+  border: 2px solid red;
+  border-radius: 3px;
+  transition: width 0.25s, border-radius 0.25s, background-color 0.8s,
+    color 0.8s;
+}
 
-  body {
-    height: calc(100vh - var(--header-height-big));
-  }
+.pokemon-list__item--button:hover {
+  background-color: var(--button-color-hover);
+  width: 80%;
+  color: var(--font-color-inverse);
+  border-radius: 10px;
 }
