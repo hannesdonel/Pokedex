@@ -1,4 +1,4 @@
-//This is the definition of the Pokémon List
+//Definition of the Pokémon Repository
 
 let pokemonRepository = (function () {
   function Pokemon(name, height, types) {
@@ -13,6 +13,8 @@ let pokemonRepository = (function () {
     new Pokemon("Poliwhirl", 1, ["water"]),
   ];
 
+//Definition of needed functions
+  
   function add(pokemon) {
     if (typeof pokemon !== "object") {
       alert("The new Pokémon should have the form of an object");
@@ -28,6 +30,10 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  function showDetails(Pokemon) {
+    console.log(Pokemon);
+  }
+
   function addListItem(Pokemon) {
     let list = document.querySelector(".pokemon-list");
     let listItem = document.createElement("li");
@@ -37,6 +43,9 @@ let pokemonRepository = (function () {
     button.classList.add("pokemon-list__item--button");
     listItem.appendChild(button);
     list.appendChild(listItem);
+    button.addEventListener("click", function() {
+      showDetails(Pokemon);
+    });
   }
 
   return {
@@ -46,7 +55,7 @@ let pokemonRepository = (function () {
   };
 })();
 
-//List the Pokémons in DOM
+//List the Pokémon Buttons in DOM
 
 let domElementsString = "";
 pokemonRepository.getAll().forEach(function (Pokemon) {
