@@ -13,17 +13,19 @@ let pokemonRepository = (function () {
     new Pokemon("Poliwhirl", 1, ["water"]),
   ];
 
-//Definition of needed functions
-  
+  //Definition of needed functions
+
   function add(pokemon) {
     if (typeof pokemon !== "object") {
       alert("The new Pokémon should have the form of an object");
-    } else if (Object.keys(pokemon) !== ["name", "height", "types"]) {
+    } else if (
+      JSON.stringify(Object.keys(pokemon)) !==
+      JSON.stringify(["name", "height", "types"])
+    ) {
       alert(
         "The object should have the following properties: name, height, types"
       );
-    }
-    pokemonList.push(pokemon);
+    } else pokemonList.push(pokemon);
   }
 
   function getAll() {
@@ -43,7 +45,7 @@ let pokemonRepository = (function () {
     button.classList.add("pokemon-list__item--button");
     listItem.appendChild(button);
     list.appendChild(listItem);
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
       showDetails(Pokemon);
     });
   }
