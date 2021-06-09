@@ -157,14 +157,14 @@ main {
   text-align: center;
   height: auto;
   min-height: calc(100vh - 175px);
-  padding: 175px 0 0 0;
+  padding: 175px 0 10px 0;
   margin: 0;
   list-style-type: none;
 }
 
 @media all and (max-height: 480px) {
   .pokemon-list {
-    padding: 0;
+    padding: 0 0 10px 0;
     min-height: 100vh;
   }
 }
@@ -178,6 +178,7 @@ main {
 .pokemon-list__item--button {
   background-color: var(--button-color);
   height: auto;
+  min-height: 60px;
   width: 100%;
   padding: 2vh 0;
   color: inherit;
@@ -187,10 +188,20 @@ main {
     color 0.8s;
 }
 
+@media all and (max-width: 480px), (max-height: 480px) {
+  .pokemon-list__item--button {
+    height: 90px;
+  }
+}
+
 .pokemon-list__item--button:hover {
   background-color: var(--button-color-hover);
   width: 80%;
   color: var(--font-color-inverse);
   border-radius: 10px;
   cursor: pointer;
+}
+
+.loader {
+  cursor: progress;
 }
