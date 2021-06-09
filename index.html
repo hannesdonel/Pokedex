@@ -24,20 +24,32 @@
 
   <body>
     <div id="background-overlay">
-        <header id="hide-header">
-          <h1 class="zoom-in animate__animated animate__zoomIn" id="headline-normal">POKÉDEX</h1>
-          <h1 class="zoom-in animate__animated animate__zoomIn" id="headline-stretched">P O K É D E X</h1>
-        </header>
+      <header id="hide-header">
+        <h1
+          class="zoom-in animate__animated animate__zoomIn"
+          id="headline-normal"
+        >
+          POKÉDEX
+        </h1>
+        <h1
+          class="zoom-in animate__animated animate__zoomIn"
+          id="headline-stretched"
+        >
+          P O K É D E X
+        </h1>
+      </header>
 
-        <main>
-          <ul
-            class="
-              pokemon-list
-              animate__animated animate__fadeInUp animate__delay-1s
-            "
-          ></ul>
-          <script src="js/scripts.js"></script>
-        </main>
-      </div>
+      <main>
+        <ul
+          class="
+            pokemon-list
+            animate__animated animate__fadeInUp animate__delay-1s
+          "
+        ></ul>
+      </main>
+    </div>
+    <script src="js/fetch-polyfill.js"></script>
+    <script src="js/promise-polyfill.js"></script>
+    <script src="js/scripts.js"></script>
   </body>
 </html>
