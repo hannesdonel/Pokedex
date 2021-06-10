@@ -30,7 +30,7 @@ let pokemonRepository = (function () {
       JSON.stringify(["name", "detailsUrl"])
     ) {
       alert(
-        "The object should have the following properties: name, detailsUrl, imageUrl, height, types"
+        "The object should have the following properties: name, detailsUrl"
       );
     } else pokemonList.push(pokemon);
   }
@@ -44,14 +44,14 @@ let pokemonRepository = (function () {
   // Create a button in the for each Pokémon within pokemonList
 
   function addListItem(Pokemon) {
-    let list = document.querySelector(".pokemon-list");
+    let $list = document.querySelector(".pokemon-list");
     let listItem = document.createElement("li");
-    listItem.classList.add("pokemon-list__item");
     let button = document.createElement("button");
+    listItem.classList.add("pokemon-list__item");
     button.innerText = Pokemon.name;
     button.classList.add("pokemon-list__item--button");
     listItem.appendChild(button);
-    list.appendChild(listItem);
+    $list.appendChild(listItem);
     button.addEventListener("click", function () {
       showDetails(Pokemon);
     });
