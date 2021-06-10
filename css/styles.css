@@ -175,6 +175,12 @@ main {
   max-width: 300px;
 }
 
+@media all and (max-width: 480px), (max-height: 480px) {
+  .pokemon-list__item {
+    max-width: 600px;
+  }
+}
+
 .pokemon-list__item--button {
   background-color: var(--button-color);
   height: auto;
