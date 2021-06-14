@@ -164,6 +164,13 @@ button:hover {
   }
 }
 
+@media all and (max-height: 460px) {
+  .popup > img {
+    max-height: 60vh;
+    width: auto;
+  }
+}
+
 .capitalize {
   text-transform: capitalize;
 }
