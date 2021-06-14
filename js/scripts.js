@@ -1,4 +1,4 @@
-// When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar
+// When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar.
 
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function () {
@@ -15,10 +15,8 @@ window.onscroll = function () {
 
 let pokemonRepository = (function () {
   let pokemonList = [];
-
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
-
-  // Definition of needed functions
+  let popupContainer = document.querySelector("#popup-container");
 
   // Add a Pokémon
 
@@ -92,9 +90,17 @@ let pokemonRepository = (function () {
       })
       .then(function (details) {
         buttonLoaderStop();
-        item.imageUrl = details.sprites.front_default;
+        item.imageUrl = details.sprites.other.dream_world.front_default;
+        item.abilities = [];
+        for (i = 0; i < details.abilities.length; i++) {
+          item.abilities.push(` ${details.abilities[i].ability.name}`);
+        }
         item.height = details.height;
-        item.types = details.types;
+        item.types = [];
+        for (i = 0; i < details.types.length; i++) {
+          item.types.push(` ${details.types[i].type.name}`);
+        }
+        item.weight = details.weight;
       })
       .catch(function (e) {
         buttonLoaderStop();
@@ -104,9 +110,77 @@ let pokemonRepository = (function () {
 
   // Show details of Pokémon
 
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+  function showDetails(item) {
+    loadDetails(item).then(function () {
+      showPopup(item);
+    });
+  }
+
+  // Show popup with Pokémon details
+
+  function showPopup(item) {
+    popupContainer.innerHTML = "";
+    popupContainer.classList.add("animate__fadeIn");
+
+    let popup = document.createElement("div");
+    let closeButton = document.createElement("button");
+    let popupImage = document.createElement("img");
+    let popupHeading = document.createElement("h1");
+    let popupContent = document.createElement("p");
+    popup.classList.add("popup");
+    popup.classList.add("animate__animated");
+    popup.classList.add("animate__faster");
+    popup.classList.add("animate__zoomIn");
+    closeButton.innerText = "X";
+    popupImage.src = item.imageUrl;
+    popupImage.alt = "Picture of selected Pokémon";
+    popupImage.width = 300;
+    popupImage.height = 300;
+    popupHeading.innerText = item.name;
+    popupContent.innerHTML = `
+      <span class="capitalize"><b>Abilities: </b>${item.abilities}<br>
+      <b>Types: </b>${item.types}</span><br>
+      <b>Height: </b>${item.height}0 cm<br>
+      <b>Weight: </b>${item.weight}00 g
+      `;
+    popupContainer.appendChild(popup);
+    popup.appendChild(closeButton);
+    popup.appendChild(popupImage);
+    popup.appendChild(popupHeading);
+    popup.appendChild(popupContent);
+
+    popupContainer.classList.add("is-visible");
+
+    // Possibilities to close the popup
+
+    closeButton.addEventListener("click", hidePopup);
+    window.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        popupContainer.classList.contains("is-visible")
+      ) {
+        hidePopup();
+      }
+    });
+    window.addEventListener("click", (e) => {
+      let target = e.target;
+      if (target === popupContainer) {
+        hidePopup();
+      }
+    });
+  }
+
+  // Hide popup
+
+  function hidePopup() {
+    let popup = document.querySelector(".popup");
+    popupContainer.classList.add("animate__fadeOut");
+    popupContainer.classList.remove("animate__fadeIn");
+    popup.classList.remove("animate__zoomIn");
+    popup.classList.add("animate__zoomOut");
+    popup.addEventListener("animationend", () => {
+      popupContainer.classList.remove("is-visible");
+      popupContainer.classList.remove("animate__fadeOut");
     });
   }
 
