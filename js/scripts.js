@@ -64,18 +64,19 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (json) {
-        hideLoader();
-        json.results.forEach(function (item) {
+        for (item of json.results) {
           let pokemon = {
             name: item.name,
             detailsUrl: item.url,
           };
           add(pokemon);
-        });
+        }
       })
       .catch(function (e) {
-        hideLoader();
         console.error(e);
+      })
+      .finally((e) => {
+        hideLoader();
       });
   }
 
@@ -89,7 +90,6 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (details) {
-        buttonLoaderStop();
         item.imageUrl = details.sprites.other.dream_world.front_default;
         item.abilities = [];
         for (i = 0; i < details.abilities.length; i++) {
@@ -103,8 +103,10 @@ let pokemonRepository = (function () {
         item.weight = details.weight;
       })
       .catch(function (e) {
-        buttonLoaderStop();
         console.error(e);
+      })
+      .finally((e) => {
+        buttonLoaderStop();
       });
   }
 
@@ -129,7 +131,6 @@ let pokemonRepository = (function () {
     let popupContent = document.createElement("p");
     popup.classList.add("popup");
     popup.classList.add("animate__animated");
-    popup.classList.add("animate__faster");
     popup.classList.add("animate__zoomIn");
     closeButton.innerText = "X";
     popupImage.src = item.imageUrl;
@@ -138,10 +139,10 @@ let pokemonRepository = (function () {
     popupImage.height = 300;
     popupHeading.innerText = item.name;
     popupContent.innerHTML = `
-      <span class="capitalize"><b>Abilities: </b>${item.abilities}<br>
-      <b>Types: </b>${item.types}</span><br>
-      <b>Height: </b>${item.height}0 cm<br>
-      <b>Weight: </b>${item.weight}00 g
+      <p class="block-level"><span class="capitalize"><b>Abilities: </b>${item.abilities}</p>
+      <p class="block-level"><b>Types: </b>${item.types}</span></p>
+      <p class="block-level"><b>Height: </b>${item.height}0 cm</p>
+      <p class="block-level"><b>Weight: </b>${item.weight}00 g</p>
       `;
     popupContainer.appendChild(popup);
     popup.appendChild(closeButton);
