@@ -64,7 +64,6 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (json) {
-        hideLoader();
         json.results.forEach(function (item) {
           let pokemon = {
             name: item.name,
@@ -74,8 +73,10 @@ let pokemonRepository = (function () {
         });
       })
       .catch(function (e) {
-        hideLoader();
         console.error(e);
+      })
+      .finally((e) => {
+        hideLoader();
       });
   }
 
@@ -89,7 +90,6 @@ let pokemonRepository = (function () {
         return response.json();
       })
       .then(function (details) {
-        buttonLoaderStop();
         item.imageUrl = details.sprites.other.dream_world.front_default;
         item.abilities = [];
         for (i = 0; i < details.abilities.length; i++) {
@@ -103,8 +103,10 @@ let pokemonRepository = (function () {
         item.weight = details.weight;
       })
       .catch(function (e) {
-        buttonLoaderStop();
         console.error(e);
+      })
+      .finally((e) => {
+        buttonLoaderStop();
       });
   }
 
