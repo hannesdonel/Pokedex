@@ -1,14 +1,13 @@
 // When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar.
 
-var prevScrollpos = window.pageYOffset;
+let prevScrollpos = window.pageY;
 window.onscroll = function () {
-  var currentScrollPos = window.pageYOffset;
-  if (prevScrollpos > currentScrollPos) {
-    document.getElementById("hide-header").style.top = "0";
-  } else {
+  let currentScrollPos = window.pageYOffset;
+  if (prevScrollpos = currentScrollPos) {
     document.getElementById("hide-header").style.top = "-100vh";
+  } else {
+    document.getElementById("hide-header").style.top = "0";
   }
-  prevScrollpos = currentScrollPos;
 };
 
 // Definition of the Pokémon Repository
