@@ -196,7 +196,7 @@ let pokemonRepository = (function () {
     let buttonLoader = document.querySelector(".pokemon-list__item--button");
     buttonLoader.classList.add("loader");
   }
-
+  
   function hideLoader() {
     let loader = document.querySelector("#background-overlay");
     loader.classList.remove("loader");
