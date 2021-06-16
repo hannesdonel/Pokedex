@@ -83,7 +83,7 @@ let pokemonRepository = (function () {
 
   function loadDetails(item) {
     let url = item.detailsUrl;
-    buttonLoader();
+    showLoader();
     return fetch(url)
       .then(function (response) {
         return response.json();
@@ -105,7 +105,7 @@ let pokemonRepository = (function () {
         console.error(e);
       })
       .finally((e) => {
-        buttonLoaderStop();
+        hideLoader();
       });
   }
 
@@ -187,23 +187,13 @@ let pokemonRepository = (function () {
   // Loader animations
 
   function showLoader() {
-    let loader = document.querySelector("#background-overlay");
-    loader.classList.add("loader");
-  }
-
-  function buttonLoader() {
-    let buttonLoader = document.querySelector(".pokemon-list__item--button");
-    buttonLoader.classList.add("loader");
+    let loader = document.querySelector("body");
+    loader.style.cursor = "progress";
   }
   
   function hideLoader() {
-    let loader = document.querySelector("#background-overlay");
-    loader.classList.remove("loader");
-  }
-
-  function buttonLoaderStop() {
-    let buttonLoader = document.querySelector(".pokemon-list__item--button");
-    buttonLoader.classList.remove("loader");
+    let loader = document.querySelector("body");
+    loader.style.cursor = "default";
   }
 
   return {
