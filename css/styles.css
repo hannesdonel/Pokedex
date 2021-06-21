@@ -3,9 +3,9 @@
 :root {
   --standard-font: "VT323", monospace;
   --normal: 400;
-  --font-color: rgb(0, 0, 0);
-  --font-color-inverse: rgb(255, 255, 255);
-  --font-color-soft: rgba(0, 0, 0, 0.05);
+  --font-color: rgb(255, 255, 255);
+  --font-color-inverse: rgb(0, 0, 0);
+  --font-color-inverse-soft: rgba(0, 0, 0, 0.05);
   --overlay-yellow: rgba(255, 222, 0, 0.8);
   --overlay-yellow-noOpacity: rgb(255, 222, 0);
   --button-color: rgba(204, 0, 0, 0.85);
@@ -61,7 +61,7 @@ body {
   height: 100vh;
   font-family: var(--standard-font);
   font-weight: var(--normal);
-  font-size: 24px;
+  font-size: 30px;
   color: var(--font-color);
 }
 
@@ -223,11 +223,11 @@ button:hover {
 
 @keyframes headlineOpacity {
   from {
-    color: var(--font-color);
+    color: var(--font-color-inverse);
   }
 
   to {
-    color: var(--font-color-soft);
+    color: var(--font-color-inverse-soft);
   }
 }
 
@@ -246,11 +246,12 @@ header > #headline-normal {
   margin: 30px 0;
   padding: 0;
   font-size: 100px;
-  color: var(--font-color);
+  color: var(--font-color-inverse);
 }
 
 header > #headline-stretched {
   display: none;
+  color: var(--font-color-inverse);
 }
 
 @media all and (max-height: 480px) {
@@ -267,7 +268,7 @@ header > #headline-stretched {
     margin: 0;
     padding: 0;
     font-size: 18vw;
-    color: var(--font-color-soft);
+    color: var(--font-color-inverse-soft-soft);
     animation: 6s headlineOpacity;
   }
 
@@ -320,7 +321,7 @@ main {
 .pokemon-list__item--button {
   background-color: var(--button-color);
   height: auto;
-  min-height: 60px;
+  min-height: 90px;
   width: 100%;
   padding: 2vh 0;
   color: inherit;
@@ -332,12 +333,6 @@ main {
     border-radius 0.1s,
     background-color 0.5s,
     color 0.5s;
-}
-
-@media all and (max-width: 480px), (max-height: 480px) {
-  .pokemon-list__item--button {
-    height: 90px;
-  }
 }
 
 .pokemon-list__item--button:hover,
