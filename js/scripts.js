@@ -3,7 +3,7 @@
 let prevScrollpos = window.pageY;
 window.onscroll = function () {
   let currentScrollPos = window.pageYOffset;
-  if (prevScrollpos = currentScrollPos) {
+  if ((prevScrollpos = currentScrollPos)) {
     document.getElementById("hide-header").style.top = "-100vh";
   } else {
     document.getElementById("hide-header").style.top = "0";
@@ -132,6 +132,7 @@ let pokemonRepository = (function () {
     popup.classList.add("animate__animated");
     popup.classList.add("animate__zoomIn");
     closeButton.innerText = "X";
+    closeButton.style.fontSize = "24px";
     popupImage.src = item.imageUrl;
     popupImage.alt = "Picture of selected Pokémon";
     popupImage.width = 300;
@@ -190,7 +191,7 @@ let pokemonRepository = (function () {
     let loader = document.querySelector("body");
     loader.style.cursor = "progress";
   }
-  
+
   function hideLoader() {
     let loader = document.querySelector("body");
     loader.style.cursor = "default";
