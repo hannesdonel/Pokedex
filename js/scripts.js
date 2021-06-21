@@ -121,7 +121,7 @@ let pokemonRepository = (function () {
 
   function showPopup(item) {
     popupContainer.innerHTML = "";
-    popupContainer.classList.add("animate__fadeIn");
+    popupContainer.classList.add("fadeIn");
 
     let popup = document.createElement("div");
     let closeButton = document.createElement("button");
@@ -129,8 +129,7 @@ let pokemonRepository = (function () {
     let popupHeading = document.createElement("h1");
     let popupContent = document.createElement("p");
     popup.classList.add("popup");
-    popup.classList.add("animate__animated");
-    popup.classList.add("animate__zoomIn");
+    popup.classList.add("zoomIn");
     closeButton.innerText = "X";
     closeButton.style.fontSize = "24px";
     popupImage.src = item.imageUrl;
@@ -175,13 +174,13 @@ let pokemonRepository = (function () {
 
   function hidePopup() {
     let popup = document.querySelector(".popup");
-    popupContainer.classList.add("animate__fadeOut");
-    popupContainer.classList.remove("animate__fadeIn");
-    popup.classList.remove("animate__zoomIn");
-    popup.classList.add("animate__zoomOut");
+    popupContainer.classList.add("fadeOut");
+    popupContainer.classList.remove("fadeIn");
+    popup.classList.remove("zoomIn");
+    popup.classList.add("zoomOut");
     popup.addEventListener("animationend", () => {
       popupContainer.classList.remove("is-visible");
-      popupContainer.classList.remove("animate__fadeOut");
+      popupContainer.classList.remove("fadeOut");
     });
   }
 
