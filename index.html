@@ -24,25 +24,18 @@
   </head>
 
   <body>
-    <div id="popup-container" class="animate__animated animate__faster"></div>
+    <div id="popup-container" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="popup-container" aria-hidden="true"></div>
     <div id="background-overlay">
-      <header id="hide-header">
-        <h1
-          class="zoom-in animate__animated animate__zoomIn"
-          id="headline-normal"
-        >
-          POKÉDEX
-        </h1>
-        <h1
-          class="zoom-in animate__animated animate__zoomIn"
-          id="headline-stretched"
-        >
-          P O K É D E X
-        </h1>
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent justify-content-center">
+          <a class="navbar-brand" href="index.html">POKÉDEX</a>
+        </nav>
       </header>
 
       <main>
-        <ul class="pokemon-list animate__animated animate__fadeInUp"></ul>
+        <ul
+          class="pokemon-list list-group-flush d-flex flex-row flex-wrap justify-content-center"
+        ></ul>
       </main>
     </div>
     <script src="js/fetch-polyfill.js"></script>

@@ -1,15 +1,3 @@
-// When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar.
-
-let prevScrollpos = window.pageY;
-window.onscroll = function () {
-  let currentScrollPos = window.pageYOffset;
-  if (prevScrollpos = currentScrollPos) {
-    document.getElementById("hide-header").style.top = "-100vh";
-  } else {
-    document.getElementById("hide-header").style.top = "0";
-  }
-};
-
 // Definition of the Pokémon Repository
 
 let pokemonRepository = (function () {
@@ -44,9 +32,16 @@ let pokemonRepository = (function () {
     let $list = document.querySelector(".pokemon-list");
     let listItem = document.createElement("li");
     let button = document.createElement("button");
-    listItem.classList.add("pokemon-list__item");
+    listItem.classList.add(
+      "pokemon-list__item",
+      "list-group-item",
+      "bg-transparent",
+      "border-0"
+    );
     button.innerText = Pokemon.name;
-    button.classList.add("pokemon-list__item--button");
+    button.classList.add("btn", "btn-lg", "btn-danger");
+    button.setAttribute("data-toggle", "modal");
+    button.setAttribute("data-target", "#popup-container");
     listItem.appendChild(button);
     $list.appendChild(listItem);
     button.addEventListener("click", function () {
@@ -121,67 +116,46 @@ let pokemonRepository = (function () {
 
   function showPopup(item) {
     popupContainer.innerHTML = "";
-    popupContainer.classList.add("animate__fadeIn");
 
     let popup = document.createElement("div");
+    let popupHeader = document.createElement("div");
+    let popupContent = document.createElement("div");
     let closeButton = document.createElement("button");
-    let popupImage = document.createElement("img");
     let popupHeading = document.createElement("h1");
-    let popupContent = document.createElement("p");
-    popup.classList.add("popup");
-    popup.classList.add("animate__animated");
-    popup.classList.add("animate__zoomIn");
+    let popupBody = document.createElement("div");
+    let popupImage = document.createElement("img");
+    popup.classList.add("modal-dialog", "modal-dialog-centered");
+    popup.setAttribute("role", "document");
+    popupHeader.classList.add("modal-header", "border-0");
+    closeButton.classList.add("close");
+    closeButton.setAttribute("type", "button");
+    closeButton.setAttribute("data-dismiss", "modal");
+    closeButton.setAttribute("aria-label", "Close");
     closeButton.innerText = "X";
+    popupHeading.classList.add("modal-title", "capitalize");
+    popupHeading.innerText = item.name;
+    popupContent.classList.add("modal-content", "align-items-center");
     popupImage.src = item.imageUrl;
     popupImage.alt = "Picture of selected Pokémon";
     popupImage.width = 300;
     popupImage.height = 300;
-    popupHeading.innerText = item.name;
-    popupContent.innerHTML = `
-      <p class="block-level"><span class="capitalize"><b>Abilities: </b>${item.abilities}</p>
-      <p class="block-level"><b>Types: </b>${item.types}</span></p>
+    popupBody.innerHTML = `
+      <p class="block-level"><span class="capitalize"><b>Abilities: </b>${item.abilities}</span></p>
+      <p class="block-level"><span class="capitalize"><b>Types: </b>${item.types}</span></p>
       <p class="block-level"><b>Height: </b>${item.height}0 cm</p>
       <p class="block-level"><b>Weight: </b>${item.weight}00 g</p>
       `;
+
     popupContainer.appendChild(popup);
-    popup.appendChild(closeButton);
-    popup.appendChild(popupImage);
-    popup.appendChild(popupHeading);
     popup.appendChild(popupContent);
+    popupContent.appendChild(popupHeader);
+    popupHeader.appendChild(popupHeading);
+    popupHeader.appendChild(closeButton);
+    popupHeader.innerHTML = '<span aria-hidden="true">&times;</span>';
+    popupContent.appendChild(popupImage);
+    popupContent.appendChild(popupBody);
 
     popupContainer.classList.add("is-visible");
-
-    // Possibilities to close the popup
-
-    closeButton.addEventListener("click", hidePopup);
-    window.addEventListener("keydown", (e) => {
-      if (
-        e.key === "Escape" &&
-        popupContainer.classList.contains("is-visible")
-      ) {
-        hidePopup();
-      }
-    });
-    window.addEventListener("click", (e) => {
-      let target = e.target;
-      if (target === popupContainer) {
-        hidePopup();
-      }
-    });
-  }
-
-  // Hide popup
-
-  function hidePopup() {
-    let popup = document.querySelector(".popup");
-    popupContainer.classList.add("animate__fadeOut");
-    popupContainer.classList.remove("animate__fadeIn");
-    popup.classList.remove("animate__zoomIn");
-    popup.classList.add("animate__zoomOut");
-    popup.addEventListener("animationend", () => {
-      popupContainer.classList.remove("is-visible");
-      popupContainer.classList.remove("animate__fadeOut");
-    });
   }
 
   // Loader animations
@@ -190,7 +164,7 @@ let pokemonRepository = (function () {
     let loader = document.querySelector("body");
     loader.style.cursor = "progress";
   }
-  
+
   function hideLoader() {
     let loader = document.querySelector("body");
     loader.style.cursor = "default";
