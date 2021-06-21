@@ -128,8 +128,7 @@ let pokemonRepository = (function () {
     let popupImage = document.createElement("img");
     let popupHeading = document.createElement("h1");
     let popupContent = document.createElement("p");
-    popup.classList.add("popup");
-    popup.classList.add("zoomIn");
+    popup.classList.add("popup", "zoomIn");
     closeButton.innerText = "X";
     closeButton.style.fontSize = "24px";
     popupImage.src = item.imageUrl;
@@ -179,8 +178,7 @@ let pokemonRepository = (function () {
     popup.classList.remove("zoomIn");
     popup.classList.add("zoomOut");
     popup.addEventListener("animationend", () => {
-      popupContainer.classList.remove("is-visible");
-      popupContainer.classList.remove("fadeOut");
+      popupContainer.classList.remove("is-visible", "fadeOut");
     });
   }
 
