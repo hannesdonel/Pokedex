@@ -100,9 +100,9 @@ button:hover {
   width: 100%;
   height: 100%;
   background: var(--overlay-yellow);
-  z-index: 999;
   display: grid;
   text-align: center;
+  z-index: 3;
 }
 
 .popup {
@@ -205,6 +205,7 @@ header {
   margin: 0;
   text-align: center;
   transition: top 0.5s;
+  z-index: 1;
 }
 
 header > h1 {
@@ -212,7 +213,6 @@ header > h1 {
   width: 100%;
   padding: 0;
   margin: 0;
-  animation: zoomIn 0.5s;
 }
 
 header > #headline-normal {
@@ -220,6 +220,7 @@ header > #headline-normal {
   padding: 0;
   font-size: 100px;
   color: var(--font-color-inverse);
+  animation: zoomIn 0.5s;
 }
 
 header > #headline-stretched {
@@ -242,7 +243,7 @@ header > #headline-stretched {
     padding: 0;
     font-size: 18vw;
     color: var(--font-color-inverse-soft);
-    animation: 6s headlineOpacity;
+    animation: headlineOpacity 4s;
   }
 
   header > #headline-normal {
@@ -260,6 +261,7 @@ main {
 }
 
 .pokemon-list {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -270,6 +272,7 @@ main {
   padding: 175px 0 10px;
   margin: 0;
   list-style-type: none;
+  z-index: 2;
 }
 
 @media all and (max-height: 480px) {
@@ -404,4 +407,22 @@ main {
 
 .fadeOut {
   animation: fadeOut 0.25s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInUp {
+  animation: fadeInUp 1s;
 }
