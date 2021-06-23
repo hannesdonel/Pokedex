@@ -1,6 +1,6 @@
-# Pokédex
+# Hello JS App
 
-_A little JavaScript App for all you Pokémon nerds out there_
+_My first ever JavaScript App for all you Pokémon nerds out there_
 
 ## Project description
 
