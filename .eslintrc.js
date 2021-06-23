@@ -16,5 +16,6 @@ module.exports = {
     "no-alert": "off",
     "no-console": "off",
     "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
+    "wrap-iife": ["error", "inside"],
   },
 };

@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="robots" content="noindex" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Simple JS App</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/styles.css" type="text/css" />
-  </head>
 
-  <body>
-    <div id="popup-container"></div>
-    <div id="background-overlay">
-      <header id="hide-header">
-        <h1 id="headline-normal">POKÉDEX</h1>
-        <h1 id="headline-stretched">P O K É D E X</h1>
-      </header>
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple JS App</title>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" type="text/css" />
+</head>
 
-      <main>
-        <ul class="pokemon-list fadeInUp"></ul>
-      </main>
-    </div>
-    <script src="dist/fetch-polyfill.min.js"></script>
-    <script src="dist/promise-polyfill.min.js"></script>
-    <script src="js/scripts.js"></script>
-  </body>
+<body>
+  <div id="popup-container"></div>
+  <div id="background-overlay">
+    <header id="hide-header">
+      <h1 id="headline-normal">POKÉDEX</h1>
+      <h1 id="headline-stretched">P O K É D E X</h1>
+    </header>
+
+    <main>
+      <div id="searchBarWrapper">
+        <input type="text" id="searchBar" onkeyup="search()" placeholder="Gotta search 'em all...">
+      </div>
+      <ul class="pokemon-list fadeInUp"></ul>
+      <button onclick="toTopFunction()" id="toTop" title="Go to top">&#8593;</button>
+    </main>
+  </div>
+  <script src="dist/fetch-polyfill.min.js"></script>
+  <script src="dist/promise-polyfill.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+
 </html>

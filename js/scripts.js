@@ -1,20 +1,40 @@
-// When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar.
+// When the user scrolls down, hide the navbar and show toTop button.
 
 window.onscroll = function () {
   const scrolled = window.scrollY;
-  if ((scrolled === 0)) {
+  const toTopButton = document.getElementById("toTop");
+  if (scrolled === 0) {
     document.getElementById("hide-header").style.top = "0";
-  } else {
+  } else if (scrolled > 0) {
     document.getElementById("hide-header").style.top = "-100vh";
+  } if (scrolled > 200) {
+    toTopButton.classList.add("fadeIn");
+    toTopButton.classList.remove("fadeOut");
+    setTimeout(() => { toTopButton.style.display = "block"; }, 250);
+  } else if (scrolled < 200) {
+    toTopButton.classList.remove("fadeIn");
+    toTopButton.classList.add("fadeOut");
+    setTimeout(() => { toTopButton.style.display = "none"; }, 250);
   }
+  console.log(scrolled);
 };
+
+// When the user clicks on the toTop button, scroll to the top of the document
+// eslint-disable-next-line
+function toTopFunction() {
+  const rootElement = document.documentElement;
+  rootElement.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
 
 // Definition of the Pokémon Repository
 
 const pokemonRepository = (function () {
-  const pokemonList = [];
   const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
   const popupContainer = document.querySelector("#popup-container");
+  const pokemonList = [];
 
   // Add a Pokémon
 
@@ -198,7 +218,7 @@ const pokemonRepository = (function () {
     loadDetails,
     showDetails,
   };
-}());
+})();
 
 // List the Pokémon Buttons in DOM
 
@@ -207,3 +227,19 @@ pokemonRepository.loadList().then(() => {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+// Search Bar
+
+// eslint-disable-next-line
+function search() {
+  const input = document.getElementById("searchBar").value.toLowerCase();
+  const allPokemon = document.getElementsByClassName("pokemon-list__item");
+
+  for (let i = 0; i < allPokemon.length; i++) {
+    if (allPokemon[i].innerText.toLowerCase().includes(input)) {
+      allPokemon[i].classList.remove("hide");
+    } else {
+      allPokemon[i].classList.add("hide");
+    }
+  }
+}
