@@ -1,8 +1,13 @@
 // When the user scrolls down, hide the navbar and show toTop button.
 
+function myTimeOut(action, time) {
+  setTimeout(() => action, time);
+}
+
 window.onscroll = function () {
   const scrolled = window.scrollY;
   const toTopButton = document.getElementById("toTop");
+  const fadeTime = 250;
   if (scrolled === 0) {
     document.getElementById("hide-header").style.top = "0";
   } else if (scrolled > 0) {
@@ -10,11 +15,11 @@ window.onscroll = function () {
   } if (scrolled > 200) {
     toTopButton.classList.add("fadeIn");
     toTopButton.classList.remove("fadeOut");
-    setTimeout(() => { toTopButton.style.display = "block"; }, 250);
+    myTimeOut(toTopButton.style.display = "block", fadeTime);
   } else if (scrolled < 200) {
     toTopButton.classList.remove("fadeIn");
     toTopButton.classList.add("fadeOut");
-    setTimeout(() => { toTopButton.style.display = "none"; }, 250);
+    myTimeOut(toTopButton.style.display = "none", fadeTime);
   }
 };
 
@@ -141,6 +146,10 @@ const pokemonRepository = (function () {
     closeButton.innerHTML = "&times";
     closeButton.style.fontSize = "24px";
     popupImage.src = item.imageUrl;
+    popupImage.classList.add("zero-opacity");
+    popupImage.onload = function () {
+      popupImage.classList.remove("zero-opacity");
+    };
     popupImage.alt = "Picture of selected Pokémon";
     popupImage.width = 300;
     popupImage.height = 300;
