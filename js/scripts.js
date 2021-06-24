@@ -65,9 +65,7 @@ const pokemonRepository = (function () {
     const button = document.createElement("button");
     listItem.classList.add("pokemon-list__item");
     button.innerText = Pokemon.name;
-    button.classList.add("btn", "btn-lg", "btn-danger");
-    button.setAttribute("data-toggle", "modal");
-    button.setAttribute("data-target", "#popup-container");
+    button.classList.add("pokemon-list__item--button");
     listItem.appendChild(button);
     $list.appendChild(listItem);
     button.addEventListener("click", () => {
@@ -162,15 +160,11 @@ const pokemonRepository = (function () {
       <p class="block-level"><b>Height: </b>${item.height}0 cm</p>
       <p class="block-level"><b>Weight: </b>${item.weight}00 g</p>
       `;
-
     popupContainer.appendChild(popup);
+    popup.appendChild(closeButton);
+    popup.appendChild(popupImage);
+    popup.appendChild(popupHeading);
     popup.appendChild(popupContent);
-    popupContent.appendChild(popupHeader);
-    popupHeader.appendChild(popupHeading);
-    popupHeader.appendChild(closeButton);
-    popupHeader.innerHTML = "<span aria-hidden=\"true\">&times;</span>";
-    popupContent.appendChild(popupImage);
-    popupContent.appendChild(popupBody);
 
     popupContainer.classList.add("is-visible");
 
