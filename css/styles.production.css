@@ -42,7 +42,6 @@ body {
   padding: 0;
   margin: 0;
   background-color: rgba(255, 222, 0, 0.8);
-  -webkit-animation: 2s backgroundFade;
   animation: 2s backgroundFade;
 }
 
@@ -78,8 +77,6 @@ button:hover {
   margin: auto;
   padding: 20px 20px 0;
   width: 100%;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
   height: fit-content;
   max-width: 800px;
   max-height: 100%;
@@ -123,7 +120,6 @@ button:hover {
 }
 
 .popup > button {
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   right: 0;
@@ -168,7 +164,6 @@ header > #headline-normal {
   padding: 0;
   font-size: 100px;
   color: rgb(0, 0, 0);
-  -webkit-animation: zoomIn 0.5s;
   animation: zoomIn 0.5s;
 }
 
@@ -192,7 +187,6 @@ main {
   width: 100%;
   margin: 0 0 45px;
   padding: 175px 0 0;
-  position: -webkit-sticky;
   position: sticky;
   top: -130px;
   z-index: 3;
@@ -272,8 +266,7 @@ main {
   box-shadow: 0 0 100px 1px rgba(0, 0, 0, 0.6);
 }
 
-#toTop:hover,
-#toTop:focus {
+#toTop:hover {
   transform: scale(1.2);
 }
 
@@ -323,7 +316,6 @@ main {
     padding: 0;
     font-size: 18vw;
     color: rgba(0, 0, 0, 0.05);
-    -webkit-animation: headlineOpacity 4s;
     animation: headlineOpacity 4s;
   }
 
@@ -402,20 +394,6 @@ main {
 
 /* Animations */
 
-@-webkit-keyframes backgroundFade {
-  0% {
-    background-color: rgb(255, 222, 0);
-  }
-
-  25% {
-    background-color: rgb(255, 222, 0);
-  }
-
-  100% {
-    background-color: rgba(255, 222, 0, 0.8);
-  }
-}
-
 @keyframes backgroundFade {
   0% {
     background-color: rgb(255, 222, 0);
@@ -430,16 +408,6 @@ main {
   }
 }
 
-@-webkit-keyframes headlineOpacity {
-  from {
-    color: rgb(0, 0, 0);
-  }
-
-  to {
-    color: rgba(0, 0, 0, 0.05);
-  }
-}
-
 @keyframes headlineOpacity {
   from {
     color: rgb(0, 0, 0);
@@ -450,20 +418,10 @@ main {
   }
 }
 
-@-webkit-keyframes zoomIn {
-  from {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
 @keyframes zoomIn {
   from {
     opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
     transform: scale3d(0.3, 0.3, 0.3);
   }
 
@@ -473,23 +431,7 @@ main {
 }
 
 .zoomIn {
-  -webkit-animation: 0.25s zoomIn;
   animation: 0.25s zoomIn;
-}
-
-@-webkit-keyframes zoomOut {
-  from {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-
-  to {
-    opacity: 0;
-  }
 }
 
 @keyframes zoomOut {
@@ -499,6 +441,7 @@ main {
 
   50% {
     opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
     transform: scale3d(0.3, 0.3, 0.3);
   }
 
@@ -508,18 +451,7 @@ main {
 }
 
 .zoomOut {
-  -webkit-animation: 0.25s zoomOut;
   animation: 0.25s zoomOut;
-}
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 @keyframes fadeIn {
@@ -533,18 +465,7 @@ main {
 }
 
 .fadeIn {
-  -webkit-animation: 0.25s fadeIn;
   animation: 0.25s fadeIn;
-}
-
-@-webkit-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
 }
 
 @keyframes fadeOut {
@@ -558,35 +479,23 @@ main {
 }
 
 .fadeOut {
-  -webkit-animation: 0.25s fadeOut;
   animation: 0.25s fadeOut;
-}
-
-@-webkit-keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
   }
 
   to {
     opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 }
 
 .fadeInUp {
-  -webkit-animation: 1s fadeInUp;
   animation: 1s fadeInUp;
 }

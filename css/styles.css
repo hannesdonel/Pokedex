@@ -273,8 +273,7 @@ main {
   box-shadow: 0 0 100px 1px var(--shadow-light);
 }
 
-#toTop:hover,
-#toTop:focus {
+#toTop:hover {
   transform: scale(1.2);
 }
 

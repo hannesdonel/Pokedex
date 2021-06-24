@@ -16,14 +16,12 @@ window.onscroll = function () {
     toTopButton.classList.add("fadeOut");
     setTimeout(() => { toTopButton.style.display = "none"; }, 250);
   }
-  console.log(scrolled);
 };
 
 // When the user clicks on the toTop button, scroll to the top of the document
 // eslint-disable-next-line
 function toTopFunction() {
-  const rootElement = document.documentElement;
-  rootElement.scrollTo({
+  document.documentElement.scrollTo({
     top: 0,
     behavior: "smooth",
   });
@@ -41,10 +39,7 @@ const pokemonRepository = (function () {
   function add(pokemon) {
     if (typeof pokemon !== "object") {
       alert("The new Pokémon should have the form of an object");
-    } else if (
-      JSON.stringify(Object.keys(pokemon))
-      !== JSON.stringify(["name", "detailsUrl"])
-    ) {
+    } else if (!("name" in pokemon && "detailsUrl" in pokemon)) {
       alert(
         "The object should have the following properties: name, detailsUrl",
       );
@@ -75,54 +70,52 @@ const pokemonRepository = (function () {
 
   // Get Pokémon data from API
 
-  function loadList() {
+  async function loadList() {
     showLoader();
-    return fetch(apiUrl)
-      .then((response) => response.json())
-      .then((json) => {
-        json.results.forEach((item) => {
-          const pokemon = {
-            name: item.name,
-            detailsUrl: item.url,
-          };
-          add(pokemon);
-        });
-      })
-      .catch((e) => {
-        console.error(e);
-      })
-      .finally((e) => {
-        hideLoader(e);
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      data.results.forEach((item) => {
+        const pokemon = {
+          name: item.name,
+          detailsUrl: item.url,
+        };
+        add(pokemon);
       });
+      hideLoader();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   // Get Pokémon details from API
 
-  function loadDetails(itemDetails) {
+  async function loadDetails(itemDetails) {
     const url = itemDetails.detailsUrl;
     const pokemon = itemDetails;
     showLoader();
-    return fetch(url)
-      .then((response) => response.json())
-      .then((details) => {
-        pokemon.imageUrl = details.sprites.other.dream_world.front_default;
-        pokemon.abilities = [];
-        for (let i = 0; i < details.abilities.length; i++) {
-          pokemon.abilities.push(` ${details.abilities[i].ability.name}`);
-        }
-        pokemon.height = details.height;
-        pokemon.types = [];
-        for (let i = 0; i < details.types.length; i++) {
-          pokemon.types.push(` ${details.types[i].type.name}`);
-        }
-        pokemon.weight = details.weight;
-      })
-      .catch((e) => {
-        console.error(e);
-      })
-      .finally((e) => {
-        hideLoader(e);
-      });
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      const {
+        sprites, abilities, height, types, weight,
+      } = data;
+
+      pokemon.imageUrl = sprites.other.dream_world.front_default;
+      pokemon.abilities = [];
+      for (let i = 0; i < abilities.length; i++) {
+        pokemon.abilities.push(` ${abilities[i].ability.name}`);
+      }
+      pokemon.height = height;
+      pokemon.types = [];
+      for (let i = 0; i < types.length; i++) {
+        pokemon.types.push(` ${types[i].type.name}`);
+      }
+      pokemon.weight = weight;
+      hideLoader();
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   // Show details of Pokémon
