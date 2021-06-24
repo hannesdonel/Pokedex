@@ -25,17 +25,10 @@ ul {
 :root {
   --standard-font: "VT323", monospace;
   --normal: 400;
-<<<<<<< HEAD
-  --font-color: rgb(0, 0, 0);
-  --font-color-inverse: rgb(255, 255, 255);
-  --font-color-soft: rgba(0, 0, 0, 0.05);
-  --overlay-yellow: rgba(255, 222, 0, 0.9);
-=======
   --font-color: rgb(255, 255, 255);
   --font-color-inverse: rgb(0, 0, 0);
   --font-color-inverse-soft: rgba(0, 0, 0, 0.05);
   --overlay-yellow: rgba(255, 222, 0, 0.8);
->>>>>>> main
   --overlay-yellow-noOpacity: rgb(255, 222, 0);
   --button-color: rgba(204, 0, 0, 0.85);
   --button-color-noOpacity: rgba(204, 0, 0, 1);
@@ -48,14 +41,11 @@ ul {
   --header-height-big: 100px;
 }
 
-<<<<<<< HEAD
-=======
 * {
   box-sizing: border-box;
 }
 
 /* stylelint-disable */
->>>>>>> main
 @font-face {
   font-family: "VT323";
   font-style: normal;
@@ -92,13 +82,13 @@ body {
   animation: 2s backgroundFade;
 }
 
-<<<<<<< HEAD
 .zoom-in {
   height: 100%;
   width: 100%;
   padding: 0;
   margin: 0;
-=======
+}
+
 /* Popup styling */
 
 button:hover {
@@ -159,14 +149,12 @@ button:hover {
   max-width: 300px;
   max-height: 300px;
   height: auto;
->>>>>>> main
+  transition: opacity 1s;
 }
 
 .capitalize {
   text-transform: capitalize;
 }
-<<<<<<< HEAD
-=======
 
 .popup > h1 {
   text-align: center;
@@ -431,6 +419,10 @@ main {
   display: none;
 }
 
+.zero-opacity {
+  opacity: 0;
+}
+
 /* Animations */
 
 @keyframes backgroundFade {
@@ -538,4 +530,3 @@ main {
 .fadeInUp {
   animation: 1s fadeInUp;
 }
->>>>>>> main
