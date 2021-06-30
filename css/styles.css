@@ -124,6 +124,7 @@ button:hover {
   max-width: 300px;
   max-height: 300px;
   height: auto;
+  transition: opacity 1s;
 }
 
 .capitalize {
@@ -391,6 +392,10 @@ main {
 
 .hide {
   display: none;
+}
+
+.zero-opacity {
+  opacity: 0;
 }
 
 /* Animations */
