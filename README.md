@@ -1,4 +1,4 @@
-# Hello JS App
+# Pokédex
 
 _My first ever JavaScript App for all you Pokémon nerds out there_
 
