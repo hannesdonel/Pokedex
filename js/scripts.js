@@ -1,7 +1,7 @@
 // When the user scrolls down, hide the navbar and show toTop button.
 
 window.onscroll = function () {
-  const scrolled = window.scrollY;
+  const scrolled = window.pageYOffset;
   const toTopButton = document.getElementById("toTop");
   const hideHeader = document.getElementById("hide-header");
   const fadeTime = 250;
