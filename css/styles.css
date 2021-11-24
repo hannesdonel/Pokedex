@@ -230,7 +230,7 @@ main {
 
 #searchBar {
   width: 80%;
-  margin-right: -30px;
+  margin-right: -42px;
   max-width: 400px;
   border-radius: 3px;
   box-shadow: 0 0 100px 1px var(--shadow-light);
