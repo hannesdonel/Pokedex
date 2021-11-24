@@ -1,13 +1,14 @@
 {
-  "scripts": {},
+  "scripts": {
+    "dev": "npx parcel index.html",
+    "build": "npx parcel build index.html"
+  },
   "devDependencies": {
     "eslint": "^7.29.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
-    "prettier": "2.3.1"
-  },
-  "dependencies": {
-    "prettier-stylelint": "^0.4.2",
-    "stylelint-config-standard": "^22.0.0"
+    "parcel": "^2.0.1",
+    "stylelint": "^14.1.0",
+    "stylelint-config-recommended": "^6.0.0"
   }
 }
