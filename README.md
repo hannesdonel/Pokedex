@@ -1,24 +1,31 @@
 # Pokédex
 
-_My first ever JavaScript App for all you Pokémon nerds out there_
+This is a little, fully responsive application that fetches data about Pokémon from the RESTful <a href="https://pokeapi.co/">PokéAPI</a> and then displays it in a searchable list. Have fun.
 
-## Project description
+<a href="https://hannesdonel.github.io/Pokedex/">Use the app.</a>
 
-This is a little application that gets data about Pokémon from an external API and then displays it in a list. I've done all programming from scratch with HTML, CSS and JavaScript. Have fun!
+<img src="./assets/example1.png" alt="Example Image 1" width="100%">
+<img src="./assets/example2.png" alt="Example Image 2" width="100%">
 
-## How to get the project running
 
-Visit the gh-pages site and browse your favorite Pokémon via scrolling or the search bar. Click on a name to get more information and a pic of a specific Pokémon.
+## Technologies
 
-## Project dependencies
+- HTML
+- CSS
+- JavaScript
+- parcel
+- eslint
+- stylelint
 
-HTML
-CSS
-JavaScript
-Prettier for HTML (standard rules)
-Stylelint for CSS (rules are in the repository)
-ESLint for JavaScript (rules are in the repository)
 
-## Which API the project uses
+## Functionality
 
-External API utilized: https://pokeapi.co/
+- Load data from an external API
+- View a list of items
+- On user action (e.g., by clicking on a list item), view details for that item
+- Search through all items with a search input
+
+
+## Get started
+
+You can start a development server on `http://localhost:1234/` via `npm run dev`.
