@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "dev": "npx parcel index.html",
-    "build": "npx parcel build src/index.html --dist-dir /"
+    "dev": "npx parcel index.html"
   },
   "devDependencies": {
     "eslint": "^7.29.0",
