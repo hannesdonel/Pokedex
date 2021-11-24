@@ -1,25 +1,23 @@
 // When the user scrolls down, hide the navbar and show toTop button.
 
-function myTimeOut(action, time) {
-  setTimeout(() => action, time);
-}
-
 window.onscroll = function () {
   const scrolled = window.scrollY;
   const toTopButton = document.getElementById("toTop");
+  const hideHeader = document.getElementById("hide-header");
   const fadeTime = 250;
   if (scrolled === 0) {
-    document.getElementById("hide-header").style.top = "0";
+    hideHeader.style.top = "0";
   } else if (scrolled > 0) {
-    document.getElementById("hide-header").style.top = "-100vh";
-  } if (scrolled > 200) {
+    hideHeader.style.top = "-100vh";
+  }
+  if (scrolled > 200) {
     toTopButton.classList.add("fadeIn");
     toTopButton.classList.remove("fadeOut");
-    myTimeOut(toTopButton.style.display = "block", fadeTime);
+    setTimeout(() => { toTopButton.style.display = "block"; }, fadeTime);
   } else if (scrolled < 200) {
     toTopButton.classList.remove("fadeIn");
     toTopButton.classList.add("fadeOut");
-    myTimeOut(toTopButton.style.display = "none", fadeTime);
+    setTimeout(() => { toTopButton.style.display = "none"; }, fadeTime);
   }
 };
 
@@ -34,7 +32,7 @@ function toTopFunction() {
 
 // Definition of the Pokémon Repository
 
-const pokemonRepository = (function () {
+const pokemonRepository = (() => {
   const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
   const popupContainer = document.querySelector("#popup-container");
   const pokemonList = [];
@@ -43,9 +41,9 @@ const pokemonRepository = (function () {
 
   function add(pokemon) {
     if (typeof pokemon !== "object") {
-      alert("The new Pokémon should have the form of an object");
+      console.log("The new Pokémon should have the form of an object");
     } else if (!("name" in pokemon && "detailsUrl" in pokemon)) {
-      alert(
+      console.log(
         "The object should have the following properties: name, detailsUrl",
       );
     } else pokemonList.push(pokemon);
@@ -60,14 +58,14 @@ const pokemonRepository = (function () {
   // Create a button in the for each Pokémon within pokemonList
 
   function addListItem(Pokemon) {
-    const $list = document.querySelector(".pokemon-list");
+    const list = document.getElementById("pokemon-list");
     const listItem = document.createElement("li");
     const button = document.createElement("button");
     listItem.classList.add("pokemon-list__item");
     button.innerText = Pokemon.name;
     button.classList.add("pokemon-list__item--button");
     listItem.appendChild(button);
-    $list.appendChild(listItem);
+    list.appendChild(listItem);
     button.addEventListener("click", () => {
       showDetails(Pokemon);
     });
@@ -213,12 +211,9 @@ const pokemonRepository = (function () {
   }
 
   return {
-    add,
     getAll,
     addListItem,
     loadList,
-    loadDetails,
-    showDetails,
   };
 })();
 
@@ -233,9 +228,10 @@ pokemonRepository.loadList().then(() => {
 // Search Bar
 
 // eslint-disable-next-line
-function search() {
-  const input = document.getElementById("searchBar").value.toLowerCase();
+function search(reset) {
+  const input = reset ? "" : document.getElementById("searchBar").value.toLowerCase();
   const allPokemon = document.getElementsByClassName("pokemon-list__item");
+  console.log(allPokemon);
 
   for (let i = 0; i < allPokemon.length; i++) {
     if (allPokemon[i].innerText.toLowerCase().includes(input)) {
