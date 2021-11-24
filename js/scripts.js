@@ -7,7 +7,7 @@ window.onscroll = function () {
   const fadeTime = 250;
   if (scrolled === 0) {
     hideHeader.style.top = "0";
-  } else if (scrolled > 0) {
+  } else if (scrolled > 10) {
     hideHeader.style.top = "-100vh";
   }
   if (scrolled > 200) {
