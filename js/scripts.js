@@ -5,7 +5,7 @@ window.onscroll = function () {
   const toTopButton = document.getElementById("toTop");
   const hideHeader = document.getElementById("hide-header");
   const fadeTime = 250;
-  if (scrolled === 0) {
+  if (scrolled < 10) {
     hideHeader.style.top = "0";
   } else if (scrolled > 10) {
     hideHeader.style.top = "-100vh";
